@@ -1,0 +1,41 @@
+{
+  "kind": "multi",
+  "user": {
+    "kind": "user",
+    "key": "f9b59c77-99bc-4fdd-9548-54508d3cf2d5",
+    "country": "PRT",
+    "custom": {
+      "country": "PRT",
+      "state": "UNDEFINED",
+      "deviceId": "7964fa47-f9c3-44a6-9541-3ea1eb055134",
+      "accountId": "f127648c-1532-4f39-aafb-66576272aee7",
+      "accountName": "MoonPay",
+      "organizationId": "880802a8-234f-44b6-9bca-c27c2d4fe693",
+      "organizationName": "MoonPay"
+    },
+    "email": "user@example.com",
+    "isNew": false
+  },
+  "deployment": {
+    "kind": "deployment",
+    "key": "unknown",
+    "timestamp": -1
+  },
+  "network": {
+    "kind": "network",
+    "key": "8.29.24.95",
+    "ipAddress": {
+      "countryAlpha2": "PT",
+      "state": ""
+    },
+    "ip": "8.29.24.95"
+  },
+  "account": {
+    "key": "f127648c-1532-4f39-aafb-66576272aee7",
+    "accountId": "f127648c-1532-4f39-aafb-66576272aee7",
+    "accountName": "MoonPay",
+    "organizationId": "880802a8-234f-44b6-9bca-c27c2d4fe693",
+    "organizationName": "MoonPay",
+    "apiKey": "pk_test_h2e4GS4Zw7haH02RjrWYzoVUAGuRtLdC"
+  }
+}

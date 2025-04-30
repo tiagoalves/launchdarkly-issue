@@ -1,8 +1,25 @@
-# Welcome to your Expo app 👋
+# About
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a simple repo to reproduce an unexpected LaunchDarkly issue in React Native.
 
-## Get started
+## Problem description
+
+Using the latest `@launchdarkly/react-native-client-sdk`, the `on('change', ...)` event handler is firing unrelated to `identify()` calls for older context updates.
+
+This is an example sequence:
+
+* Call to `identify({ user: { ... } })`
+* `'change'` event is triggered with the correct variants for the previous `identify()` call (eg `mica-banner: false`).
+* Call to `identify({ user: { ... }, network: { country: "Portugal" } })`
+* `'change'` event is triggered again, now with the correct variants for the previous `identify()` call (eg `mica-banner: true`).
+* `'change'` event is unexpectedly triggered again, but now with the variants of the first `identify()` call, thus reverting the previous correct feature flag state (eg `mica-banner: false`).
+* `'change'` event is unexpectedly triggered once again, now with the variants of the second `identify()` call, fixing the flag state again (eg `mica-banner: true`).
+
+This behaviour varies. Sometimes `'change'` is only triggered twice, as expected. Sometimes it's 3 times, sometimes 4 and even more.
+
+In summary, we can't trust our feature flags to evaluate to the expected final variant.
+
+## Reproduce
 
 1. Install dependencies
 
@@ -13,38 +30,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 2. Start the app
 
    ```bash
-    npx expo start
+   EXPO_PUBLIC_LD_PRODUCTION_MOBILE_KEY=mob-.... npx expo start
    ```
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+In the output, you'll see `LdTest ...`  messages showing what's going on.

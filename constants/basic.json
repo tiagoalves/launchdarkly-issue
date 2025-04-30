@@ -1,0 +1,18 @@
+{
+  "kind": "multi",
+  "user": {
+    "kind": "user",
+    "key": "anonymous",
+    "country": "UNDEFINED",
+    "custom": {
+      "country": "UNDEFINED",
+      "state": "UNDEFINED",
+      "deviceId": "7964fa47-f9c3-44a6-9541-3ea1eb055134"
+    }
+  },
+  "deployment": {
+    "kind": "deployment",
+    "key": "unknown",
+    "timestamp": -1
+  }
+}
