@@ -39,7 +39,7 @@ In the output, you'll see `LdTest ...`  messages showing what's going on.
 
 1. Create a new Expo project: `npx create-expo-app@latest`
 2. Copy the `FeatureFlagTest/` folder of this repo to your new project
-3. Instance the reproduction component `<FeatureFlagTest />`
+3. Instance the reproduction component `<FeatureFlagTest />` ([Example in this repo](app/_layout.tsx#L36))
 4. `npm i`
 5. `npm i @launchdarkly/react-native-client-sdk@latest`
 
