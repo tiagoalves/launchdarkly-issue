@@ -46,9 +46,9 @@ interface FeatureFlaggingProviderProps {
   children: ReactNode;
 }
 
-const FeatureFlaggingProvider: React.FC<
-  FeatureFlaggingProviderProps
-> = ({ children }) => {
+const FeatureFlaggingProvider: React.FC<FeatureFlaggingProviderProps> = ({
+  children,
+}) => {
   const [counter, setCounter] = useState(0);
   const [ldClient, setLdClient] = useState<ReactNativeLDClient | undefined>(
     undefined
@@ -123,6 +123,7 @@ const useSetupLaunchDarkly = () => {
         withReasons: true,
         initialConnectionMode: "polling",
         applicationInfo,
+        debug: true,
       }
     );
 
