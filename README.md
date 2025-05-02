@@ -34,3 +34,19 @@ In summary, we can't trust our feature flags to evaluate to the expected final v
    ```
 
 In the output, you'll see `LdTest ...`  messages showing what's going on.
+
+## How to copy the custom-dependency-free reproduction code to a clean Expo project
+
+1. Create a new Expo project: `npx create-expo-app@latest`
+2. Copy the `FeatureFlagTest/` folder of this repo to your new project
+3. Instance the reproduction component `<FeatureFlagTest />`
+4. `npm i`
+5. `npm i @launchdarkly/react-native-client-sdk@latest`
+
+To run it in dev mode where the issue is reproducible:
+
+      EXPO_PUBLIC_LD_PRODUCTION_MOBILE_KEY=mob-.... npx expo start
+
+To run it in prod mode where the issue is NOT reproducible:
+
+      EXPO_PUBLIC_LD_PRODUCTION_MOBILE_KEY=mob-.... npx expo run:ios --configuration Release
